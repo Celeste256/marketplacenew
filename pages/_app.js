@@ -27,10 +27,11 @@ function MyApp({ Component, pageProps }) {
       <header>
         <Navbar />
       </header>
-      <div className="row">
+      <div className="row m-0 ">
         {showDrawer() ? <Drawer /> : ""}
-        <div className={showDrawer() ? "col-md-10 bg-light" : 
-              "col-md-12 bg-light"}>
+        <div
+          className={showDrawer() ? "col-md-10 bg-light" : "col-md-12 bg-light"}
+        >
           <Component {...pageProps} />
         </div>
       </div>
