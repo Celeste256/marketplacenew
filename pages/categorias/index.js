@@ -19,9 +19,10 @@ export default function Categorias() {
     data.push({
       name: `Categoria ${i}`,
       createdAt: "xx/xx/xxxx",
-      id: 1,
+      id: i,
     });
   }
+
   const header = ["NOME", "CRIADO EM", "AÇÕES"];
 
   return (
@@ -43,7 +44,9 @@ export default function Categorias() {
             </Link>
           </Col>
         </Row>
-        <ItemTable data={data} header={header} detailLink="categorias" />
+        <ItemTable data={data} 
+          header={header} 
+          detailLink="categorias" />
       </Card>
     </>
   );

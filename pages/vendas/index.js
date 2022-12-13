@@ -17,15 +17,21 @@ export default function Vendas() {
   const data = [];
   for (let i = 0; i < 10; i++) {
     data.push({
-      order: `#${i + 1}`,
-      name: `Fulano ${i}`,
+      order: `#${i+1}`,
+      client: `Fulano ${i}`,
       price: `R$ ${i},99`,
       createdAt: "xx/xx/xxxx",
       id: i,
     });
   }
 
-  const header = ["PEDIDO", "CLIENTE", "TOTAL", "CRIADO EM", "AÇÕES"];
+  const header = [
+    "PEDIDO",
+    "CLIENTE",
+    "TOTAL",
+    "CRIADO EM",
+    "AÇÕES"
+  ];
 
   return (
     <>

@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Drawer from "../components/Drawer";
+import { AuthProvider } from "../context/auth.context";
 
 function MyApp({ Component, pageProps }) {
   useEffect(() => {
@@ -19,7 +20,7 @@ function MyApp({ Component, pageProps }) {
   }
 
   return (
-    <>
+    <AuthProvider>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>ECommerce</title>
@@ -27,7 +28,7 @@ function MyApp({ Component, pageProps }) {
       <header>
         <Navbar />
       </header>
-      <div className="row m-0 ">
+      <div className="row m-0">
         {showDrawer() ? <Drawer /> : ""}
         <div
           className={showDrawer() ? "col-md-10 bg-light" : "col-md-12 bg-light"}
@@ -36,7 +37,7 @@ function MyApp({ Component, pageProps }) {
         </div>
       </div>
       <Footer />
-    </>
+    </AuthProvider>
   );
 }
 

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Button,
   Card,
@@ -12,19 +12,17 @@ import {
 } from "react-bootstrap";
 import * as Icon from "react-bootstrap-icons";
 import ItemTable from "../../components/ItemTable";
+import produtoService from "../../services/produto.service";
+import useAuth from "../../hooks/useAuth";
 
 export default function Produtos() {
-  const data = [];
-  for (let i = 0; i < 10; i++) {
-    data.push({
-      image: "image",
-      name: `Produto ${i}`,
-      category: `Categoria ${i}`,
-      price: `R$ ${i},99`,
-      createdAt: "xx/xx/xxxx",
-      id: i,
-    });
-  }
+  useAuth();
+
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    produtoService.getProdutos().then((r) => setData(r));
+  }, []);
 
   const header = ["FOTO", "NOME", "CATEGORIA", "PREÇO", "CRIADO EM", "AÇÕES"];
 
@@ -42,12 +40,17 @@ export default function Produtos() {
             </InputGroup>
           </Col>
           <Col className="d-grid" md={2}>
-            <Link href="/categorias/cadastrar">
+            <Link href="/produtos/cadastrar">
               <Button>Adicionar</Button>
             </Link>
           </Col>
         </Row>
-        <ItemTable data={data} header={header} detailLink="produtos" />
+        <ItemTable
+          data={data}
+          header={header}
+          detailLink="produtos"
+          editLink="produtos/editar"
+        />
       </Card>
     </>
   );
